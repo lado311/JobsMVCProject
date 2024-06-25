@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Vacancy>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+    <div class="CompanyVacanciesContainer">
+        @if(Model.Count() > 0)
+        {
+            @foreach (var item in Model)
+            {
+
+                <div class="card text-bg-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Title: @item.Title</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Company: @item.Author</h5>
+                        <p class="card-text">Description: @item.Description</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-success Timesclass">
+                        <p>Start</p>
+                        <p>Deadline</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-success Timesclass">
+                        <p>@item.StartDate.ToShortDateString()</p>
+                        <p>@item.DeadLine.ToShortDateString()</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-success">Salary: @item.Salary$</div>
+
+                </div>
+
+                @*<h3>Title: @item.Title</h3>
+                <h3>Description: @item.Description</h3>
+                <h3>Salary: @item.Salary</h3>
+                <h3>Company: @item.Author</h3>*@
+
+            }
+        }
+        
+    </div>
+
+
+</body>
+</html>

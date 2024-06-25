@@ -1,0 +1,40 @@
+﻿@model Company
+
+@{
+    ViewBag.ShowNavbar = false;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+    <form id="UserForm" asp-action="AddCompanyView" asp-controller="Company" method="post">
+        
+        <label asp-for="Name">Enter Name</label>
+        <input asp-for="Name"/>
+
+        <label asp-for="Email">Enter Email</label>
+        <input asp-for="Email" />
+
+        <label asp-for="Password">Enter Password</label>
+        <input asp-for="Password" />
+
+        <label asp-for="CompanyImage">Enter Image</label>
+        <input asp-for="CompanyImage"/>
+
+        <label asp-for="Name">Enter Name</label>
+        <input asp-for="Name" />
+
+        <button type="submit"> Add </button>
+    </form>
+
+   
+
+
+</body>
+</html>
