@@ -51,11 +51,15 @@ namespace WebApplication1.Controllers
 
                
 
-                return Ok("User Succsessful Created");
+                return RedirectToAction("Index", "Home");
             }
         }
 
-        
+        public IActionResult LogInCompanyView()
+        {
+            return View("LogInCompanyView");
+        }
+
         [HttpPost]
         public async Task<IActionResult> LogInCompany(Company company)
         {

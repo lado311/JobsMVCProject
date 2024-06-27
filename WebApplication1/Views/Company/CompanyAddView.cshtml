@@ -15,20 +15,17 @@
 
     <form id="UserForm" asp-action="AddCompanyView" asp-controller="Company" method="post">
         
-        <label asp-for="Name">Enter Name</label>
+        <label asp-for="Name">Enter Company Name</label>
         <input asp-for="Name"/>
 
         <label asp-for="Email">Enter Email</label>
         <input asp-for="Email" />
 
         <label asp-for="Password">Enter Password</label>
-        <input asp-for="Password" />
+        <input asp-for="Password" type="password"/>
 
         <label asp-for="CompanyImage">Enter Image</label>
         <input asp-for="CompanyImage"/>
-
-        <label asp-for="Name">Enter Name</label>
-        <input asp-for="Name" />
 
         <button type="submit"> Add </button>
     </form>

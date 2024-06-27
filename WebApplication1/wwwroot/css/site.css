@@ -33,7 +33,29 @@ body {
     flex-wrap:wrap;
 }
 
+.VacanciesContainer {
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
 .Timesclass {
     display: flex;
     justify-content: space-between;
+}
+
+.LogInFormContainer{
+    width:100%;
+    max-width:100%;
+    margin:auto;
+    margin-top:30px;
+    display:grid;
+    justify-content:center;
+    align-items:center;
+    
 }

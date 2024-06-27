@@ -33,26 +33,42 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="AddCompanyView">AddCompanyView</a>
+                            
+                        </ul>
+                        @if (accessor.HttpContext.Session.GetString("companyName") == null)
+                        {
+                        <ul class="navbar-nav flex-grow-2">
+                            
+                            <li style="text-decoration:none;" class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="AddCompanyView">Create an account</a>
+                            </li>
+                            <li style="text-decoration:none;" class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="LogInCompanyView">LogIn</a>
                             </li>
                         </ul>
-                        <div>
-                            <h2>@accessor.HttpContext.Session.GetString("companyName")</h2>
-                        </div>
-                        <li class="nav-item dropdown">
-        
-                            <button class="profileBtn">
-                                <a class="dropNav nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">My Profile</a></li>
-                                    <li><a asp-controller="Company" asp-action="GetCompanyVacancies" class="dropdown-item">My Vacancies</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a asp-action="Index" asp-controller="Home" class="dropdown-item">LogOut</a></li>
-                                </ul>
-                            </button>
-                        </li>
-    
+                        }
+                        else
+                        {
+                            <div>
+                                <h2>@accessor.HttpContext.Session.GetString("companyName")</h2>
+                            </div>
+
+                        <ul class="navbar-nav flex-grow-2">
+                            <li class="nav-item dropdown">
+
+                                <button class="profileBtn">
+                                    <a class="dropNav nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
+                                    <ul class="dropdown-menu" style="text-decoration:none">
+                                        <li><a class="dropdown-item" href="#">My Profile</a></li>
+                                        <li><a asp-controller="Company" asp-action="GetCompanyVacancies" class="dropdown-item">My Vacancies</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a asp-action="Index" asp-controller="Home" class="dropdown-item">LogOut</a></li>
+                                    </ul>
+                                </button>
+                            </li>
+                        </ul>
+                        }
+
                         
                     </div>
                 </div>

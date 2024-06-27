@@ -6,5 +6,9 @@ namespace WebApplication1.Repository.Abstractions
     {
         Task<IEnumerable<Vacancy>> GetVacancies();
         Task<IEnumerable<Vacancy>> GetCompanyVacancies(int id);
+        Task<IEnumerable<Vacancy>> GetVacanciesByCategory(int categoryId);
+        Task<IEnumerable<Vacancy>> GetVacanciesByCity(int cityId);
+        Task<IEnumerable<Vacancy>> GetVacanciesByCompany(int companyId);
+
     }
 }

@@ -1,35 +1,4 @@
-﻿@{
-    ViewBag.ShowNavbar = false;
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-
-@model Company
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
-<body>
-
-    <form asp-action="LogInCompany" asp-controller="Company" method="post">
-
-        <label asp-for="Email">Enter Email</label>
-        <input asp-for="Email" />
-
-        <label asp-for="Password">Enter Password</label>
-        <input asp-for="Password" />
-
-        <button type="submit"> LogIn </button>
-    </form>
-
-
-
-
-</body>
-</html>
+﻿
 
 
 
