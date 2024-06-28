@@ -97,6 +97,59 @@ namespace WebApplication1.Migrations
                     b.ToTable("Companies");
                 });
 
+            modelBuilder.Entity("WebApplication1.Models.Resume", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ResumeDetailId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VacancyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("ResumeDetailId");
+
+                    b.ToTable("Resumes");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.ResumeDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Experience")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ResumeDetails");
+                });
+
             modelBuilder.Entity("WebApplication1.Models.Vacancy", b =>
                 {
                     b.Property<int>("Id")
@@ -149,6 +202,23 @@ namespace WebApplication1.Migrations
                     b.ToTable("Vacancies");
                 });
 
+            modelBuilder.Entity("WebApplication1.Models.Resume", b =>
+                {
+                    b.HasOne("WebApplication1.Models.Company", null)
+                        .WithMany("Resumes")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApplication1.Models.ResumeDetail", "ResumeDetail")
+                        .WithMany()
+                        .HasForeignKey("ResumeDetailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ResumeDetail");
+                });
+
             modelBuilder.Entity("WebApplication1.Models.Vacancy", b =>
                 {
                     b.HasOne("WebApplication1.Models.Category", null)
@@ -182,6 +252,8 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("WebApplication1.Models.Company", b =>
                 {
+                    b.Navigation("Resumes");
+
                     b.Navigation("Vacancies");
                 });
 #pragma warning restore 612, 618

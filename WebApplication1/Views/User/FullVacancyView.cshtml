@@ -27,7 +27,12 @@
                         <p>@item.StartDate.ToShortDateString()</p>
                         <p>@item.DeadLine.ToShortDateString()</p>
                     </div>
-                    <div class="card-footer bg-transparent border-success">Salary: @item.Salary$</div>
+
+                    <div class="card-footer bg-transparent border-success Timesclass">
+                        <div>Salary: @item.Salary$</div>
+
+                        <a asp-action="SendResume" asp-controller="User" asp-route-Id="@item.Id" class="btn btn-primary">Send Resume</a>
+                    </div>
 
                 </div>
             }

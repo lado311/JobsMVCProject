@@ -14,24 +14,47 @@
 <body>
 
     <form id="UserForm" asp-action="AddCompanyView" asp-controller="Company" method="post">
+        <div class="LogInFormContainer">
+            <div class="mb-3">
+                <label asp-for="Name" for="exampleFormControlInput1" class="form-label">Enter Company Name</label>
+                <input asp-for="Name" class="form-control" id="exampleFormControlInput1" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" for="exampleFormControlInput1" class="form-label">Enter Email</label>
+                <input asp-for="Email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" for="exampleFormControlInput1" class="form-label">Enter Password</label>
+                <input asp-for="Password" class="form-control" id="exampleFormControlInput1" type="password" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CompanyImage" for="exampleFormControlInput1" class="form-label">Enter Image</label>
+                <input asp-for="CompanyImage" class="form-control" id="exampleFormControlInput1" />
+            </div>
         
-        <label asp-for="Name">Enter Company Name</label>
-        <input asp-for="Name"/>
-
-        <label asp-for="Email">Enter Email</label>
-        <input asp-for="Email" />
-
-        <label asp-for="Password">Enter Password</label>
-        <input asp-for="Password" type="password"/>
-
-        <label asp-for="CompanyImage">Enter Image</label>
-        <input asp-for="CompanyImage"/>
 
         <button type="submit"> Add </button>
+        </div>
     </form>
 
-   
+  @* <form asp-action="LogInCompany" asp-controller="Company" method="post">
+        <div class="LogInFormContainer">
+            <div class="mb-3">
+                <label asp-for="Email" for="exampleFormControlInput1" class="form-label">Email address</label>
+                <input asp-for="Email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
 
+            <div class="mb-3">
+                <label asp-for="Password" for="exampleFormControlInput1" class="form-label">Password</label>
+                <input asp-for="Password" type="password" class="form-control" id="exampleFormControlInput1">
+            </div>
+
+            <button type="submit"> LogIn </button>
+        </div>
+    </form>*@
 
 </body>
 </html>

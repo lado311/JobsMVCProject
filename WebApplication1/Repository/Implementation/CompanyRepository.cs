@@ -32,10 +32,27 @@ namespace WebApplication1.Repository.Implementation
             return true;
         }
 
+        public async Task AddVacancy(Vacancy vacancy)
+        {
+            await _context.Vacancies.AddAsync(vacancy);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task DeleteVacancy(Vacancy vacancy)
         {
             _context.Vacancies.Remove(vacancy);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<ResumeDetail>> GetResumes(Vacancy vacancy)
+        {
+            var resumes = _context.Resumes.Include(r => r.ResumeDetail).ToList().Where(r => r.VacancyId == vacancy.Id);
+
+            if (resumes.Count() < 0)
+                return null;
+
+            var resumeDetails = resumes.Select(r => r.ResumeDetail).ToList();
+            return resumeDetails.ToList();
         }
 
         public async Task<Company> LogInCompany(string email, string password)

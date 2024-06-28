@@ -1,0 +1,62 @@
+﻿@using WebApplication1.Repository.Abstractions;
+@model Vacancy
+@inject ISortRepository _sortRepository;
+@{
+    ViewBag.ShowNavbar = false;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+    <form id="UserForm" asp-action="AddVacancy" asp-controller="Company" method="post">
+        
+       
+
+
+        <div class="LogInFormContainer">
+            <div class="mb-3">
+                <label asp-for="Title" for="exampleFormControlInput1" class="form-label">Enter Title</label>
+                <input asp-for="Title" class="form-control" id="exampleFormControlInput1" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" for="exampleFormControlInput1" class="form-label">Enter Description</label>
+                <input asp-for="Description" type="text" class="form-control" id="exampleFormControlInput1"/>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DeadLine" for="exampleFormControlInput1" class="form-label">Enter Deadline</label>
+                <input asp-for="DeadLine" class="form-control" id="exampleFormControlInput1" type="date" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Salary" for="exampleFormControlInput1" class="form-label">Enter Salary</label>
+                <input asp-for="Salary" class="form-control" id="exampleFormControlInput1" type="number" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CategoryId" for="exampleFormControlInput1" class="form-label">Enter CategoryId</label>
+                <input asp-for="CategoryId" class="form-control" id="exampleFormControlInput1" type="number" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CityId" for="exampleFormControlInput1" class="form-label">Enter CityId</label>
+                <input asp-for="CityId" class="form-control" id="exampleFormControlInput1" type="number" />
+            </div>
+            
+
+
+            <button type="submit"> Add </button>
+        </div>
+    </form>
+
+   
+
+</body>
+</html>

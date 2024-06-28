@@ -15,6 +15,7 @@ builder.Services.AddDbContext<DataContext>(option => option.UseSqlServer(builder
 builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
 builder.Services.AddScoped<IVacancyRepository, VacancyRepository>();
+builder.Services.AddScoped<ISortRepository, SortRepository>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddDistributedMemoryCache();

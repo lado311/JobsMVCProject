@@ -7,6 +7,7 @@ namespace WebApplication1.Repository.Abstractions
         Task<bool> AddCompany(Company company);
         Task<Company> LogInCompany(string email, string password);
         Task DeleteVacancy(Vacancy vacancy);
-        
+        Task AddVacancy(Vacancy vacancy);
+        Task<IEnumerable<ResumeDetail>> GetResumes(Vacancy vacancy);
     }
 }

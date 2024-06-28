@@ -1,4 +1,6 @@
-﻿namespace WebApplication1.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace WebApplication1.Models
 {
     public class Company 
     {
@@ -8,6 +10,7 @@
         public string Password { get; set; }
         public string CompanyImage { get; set; }
         public List<Vacancy> Vacancies { get; set; }
+        public List<Resume> Resumes { get; set; }
         public byte[]? PasswordHash { get; set; }
         public byte[]? PasswordSalt { get; set; }
         public string? Token { get; set; }

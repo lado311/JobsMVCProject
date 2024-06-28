@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using WebApplication1.Models;
 using WebApplication1.Repository.Abstractions;
+using WebApplication1.Repository.Implementation;
 
 namespace WebApplication1.Controllers
 {
@@ -9,26 +10,29 @@ namespace WebApplication1.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IHttpContextAccessor _accessor;
-        private readonly IVacancyRepository _repository;
+        private readonly IVacancyRepository _vacancyRepository;
+
         public HomeController(ILogger<HomeController> logger, IHttpContextAccessor accessor, IVacancyRepository repository)
         {
             _logger = logger;
             _accessor = accessor;
-            _repository = repository;
+            _vacancyRepository = repository;
         }
 
         public IActionResult Index()
         {
-            _accessor.HttpContext.Session.Clear();
-            return View();
-
+            var vacancies = _vacancyRepository.GetVacancies().Result;
+            return View(vacancies);
         }
 
         public IActionResult Privacy()
         {
-            var vacancies = _repository.GetVacancies().Result;
-            return View(vacancies);
+            _accessor.HttpContext.Session.Clear();
+            return View();
         }
+
+        
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

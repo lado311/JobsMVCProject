@@ -49,7 +49,6 @@ namespace WebApplication1.Controllers
                 if (!registerResultIsSuccessfull)
                     return BadRequest();
 
-               
 
                 return RedirectToAction("Index", "Home");
             }
@@ -70,14 +69,14 @@ namespace WebApplication1.Controllers
 
             if(currentCompany == null)
             {
-                return NotFound();
+                return View("LogInCompanyView");
             }
             _accessor.HttpContext.Session.Clear();
             _accessor.HttpContext.Session.SetInt32("companyId", currentCompany.Id);
             _accessor.HttpContext.Session.SetString("companyName", currentCompany.Name);
             _accessor.HttpContext.Session.SetString("companyEmail", currentCompany.Email);
 
-            return RedirectToAction("Privacy", "Home");
+            return RedirectToAction("Index", "Home");
 
         }
 
@@ -87,6 +86,38 @@ namespace WebApplication1.Controllers
             int id = (int)_accessor.HttpContext.Session.GetInt32("companyId");
             return View("CompanyVacanciesView", await _vacancyRepository.GetCompanyVacancies(id));
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AddVacancy()
+        {
+            return View("AddVacancyView");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddVacancy(Vacancy vacancy, Category category, City city)
+        {
+            int companyId = (int)_accessor.HttpContext.Session.GetInt32("companyId");
+            vacancy.Author = _accessor.HttpContext.Session.GetString("companyName");
+            vacancy.CompanyId = companyId;
+            vacancy.StartDate = DateTime.Now;
+
+            if (vacancy.Salary > 0)
+                vacancy.ExistSalary = true;
+            else
+                vacancy.ExistSalary = false;
+
+            await _repository.AddVacancy(vacancy);
+            return RedirectToAction("Index", "Home");
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetVacancyResumes(Vacancy vacancy)
+        {
+            return View("VacancyResumeView", await _repository.GetResumes(vacancy));
+        }
+
+
 
     }
 }

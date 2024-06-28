@@ -1,4 +1,6 @@
-﻿@inject IHttpContextAccessor accessor;
+﻿@using WebApplication1.Repository.Abstractions;
+@inject IHttpContextAccessor accessor;
+@inject ISortRepository _sortRepository;
 
 
 
@@ -19,19 +21,19 @@
         <header>
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
                 <div class="container-fluid">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebApplication1</a>
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Jobs</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
+                            @*<li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">AllVacancies</a>
+                            </li>*@
 
                             
                         </ul>
@@ -60,9 +62,11 @@
                                     <a class="dropNav nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
                                     <ul class="dropdown-menu" style="text-decoration:none">
                                         <li><a class="dropdown-item" href="#">My Profile</a></li>
-                                        <li><a asp-controller="Company" asp-action="GetCompanyVacancies" class="dropdown-item">My Vacancies</a></li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li><a asp-action="Index" asp-controller="Home" class="dropdown-item">LogOut</a></li>
+                                            <li><a asp-controller="Company" asp-action="AddVacancy" class="dropdown-item">My AddVacancy</a></li>
+                                            <li><a asp-controller="Company" asp-action="GetCompanyVacancies" class="dropdown-item">My Vacancies</a></li>
+
+                                            <li><hr class="dropdown-divider"></li>
+                                            <li><a asp-action="FullVacancyView" asp-controller="User" class="dropdown-item">LogOut</a></li>
                                     </ul>
                                 </button>
                             </li>
@@ -73,11 +77,66 @@
                     </div>
                 </div>
             </nav>
+
+            <!-- Sidebar -->
+            <div class="SideBarBox">
+
+            
+            <ul class="navbar-nav flex-grow-2 ChooceSelect">
+                <li class="nav-item dropdown">
+
+                    <button class="profileBtn">
+                        <a class="dropNav nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+                        <ul class="dropdown-menu myDropDown" style="text-decoration:none;">
+                            @foreach (var item in await _sortRepository.GetCategoriesAsync())
+                            {
+                                <li><a asp-action="GetVacanciesByCategory" asp-controller="User" asp-route-Id="@item.Id" class="dropdown-item">@item.Name</a></li>
+                            }
+                            
+                        </ul>
+                    </button>
+                </li>
+            </ul>
+
+                <ul class="navbar-nav flex-grow-2 ChooceSelect">
+                <li class="nav-item dropdown">
+
+                    <button class="profileBtn">
+                        <a class="dropNav nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Cities</a>
+                        <ul class="dropdown-menu myDropDown" style="text-decoration:none;">
+                            @foreach (var item in await _sortRepository.GetCitiesAsync())
+                            {
+                                <li><a asp-action="GetVacanciesByCity" asp-controller="User" asp-route-Id="@item.Id" class="dropdown-item">@item.Name</a></li>
+                            }
+
+                        </ul>
+                    </button>
+                </li>
+            </ul>
+
+                <ul class="navbar-nav flex-grow-2 ChooceSelect">
+                <li class="nav-item dropdown">
+
+                    <button class="profileBtn">
+                        <a class="dropNav nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Companies</a>
+                        <ul class="dropdown-menu myDropDown" style="text-decoration:none;">
+                            @foreach (var item in await _sortRepository.GetCompanyAsync())
+                            {
+                                <li><a asp-action="GetVacanciesByCompany" asp-controller="User" asp-route-Id="@item.Id" class="dropdown-item">@item.Name</a></li>
+                            }
+
+                        </ul>
+                    </button>
+                </li>
+            </ul>
+            </div>
+  <!-- Sidebar -->
         </header>
     }
 
         <div class="container">
-            <main role="main" class="pb-3">
+            <main role="main" class="pb-3 renderBodyBox">
+
                 @RenderBody()
             </main>
         </div>

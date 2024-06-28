@@ -1,0 +1,41 @@
+﻿@model IEnumerable<ResumeDetail>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">FullName</th>
+                <th scope="col">Email</th>
+                <th scope="col">Age</th>
+                <th scope="col">Experience</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (var item in Model)
+                {
+                    <td>@item.FullName</td>
+                    <td>@item.Email</td>
+                    <td>@item.Age</td>
+                    <td>@item.Experience</td>
+                }
+
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
+
+
+
+
+

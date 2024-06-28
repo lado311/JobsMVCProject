@@ -59,3 +59,52 @@ body {
     align-items:center;
     
 }
+
+
+.myDropDown {
+    transform: translate3d(0px, 45px, 0px);
+    width: 166px;
+
+}
+
+
+
+.navbar-nav .nav-link {
+    width: 150px;
+    display: flex;
+}
+
+.renderBodyBox{
+    margin-top:50px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    width: 145px;
+    height: 43px;
+}
+
+.SideBarBox {
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+    gap: 20px;
+}
+
+
+.CategoriesBox{
+    width:100%;
+    max-width:100%;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+}

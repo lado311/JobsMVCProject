@@ -1,0 +1,51 @@
+﻿@using WebApplication1.Models.Dto;
+@using WebApplication1.Repository.Abstractions;
+@model ResumeDetail
+@inject ISortRepository _sortRepository;
+@{
+    ViewBag.ShowNavbar = false;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+
+    <form id="UserForm" asp-action="SendResume" asp-controller="User" method="post">
+
+
+
+
+        <div class="LogInFormContainer">
+            <div class="mb-3">
+                <label asp-for="FullName" for="exampleFormControlInput1" class="form-label">Enter FullName</label>
+                <input asp-for="FullName" class="form-control" id="exampleFormControlInput1" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email" for="exampleFormControlInput1" class="form-label">Enter Email</label>
+                <input asp-for="Email" class="form-control" id="exampleFormControlInput1" type="email" />
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Age" for="exampleFormControlInput1" class="form-label">Enter Deadline</label>
+                <input asp-for="Age" class="form-control" id="exampleFormControlInput1"/>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Experience" for="exampleFormControlInput1" class="form-label">Experience</label>
+                <input asp-for="Experience" class="form-control" id="exampleFormControlInput1" type="number" />
+            </div>
+
+            <button type="submit"> Add </button>
+        </div>
+    </form>
+
+
+
+</body>
+</html>

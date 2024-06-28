@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models;
+using WebApplication1.Models.Dto;
 using WebApplication1.Repository.Abstractions;
 
 namespace WebApplication1.Repository.Implementation
@@ -60,6 +61,36 @@ namespace WebApplication1.Repository.Implementation
                 return null;
 
             return company.Vacancies;
+        }
+
+        public void SendResume(Vacancy vacancy, ResumeDetail resumeDetail)
+        {
+            AddResumeDetail(resumeDetail);
+
+            Resume resume = new Resume()
+            {
+                CompanyId = vacancy.CompanyId,
+                ResumeDetailId = GetResumeDetailId(),
+                VacancyId = vacancy.Id
+            };
+
+            _context.Resumes.Add(resume);
+             _context.SaveChanges();
+
+        }
+
+        public void AddResumeDetail(ResumeDetail resumeDetail)
+        {
+            resumeDetail.Id = 0;
+             _context.ResumeDetails.Add(resumeDetail);
+             _context.SaveChanges();
+        }
+
+        public int GetResumeDetailId()
+        {
+            var resumeDetails = _context.ResumeDetails.ToList();
+            return resumeDetails.Count;
+
         }
     }
 }
